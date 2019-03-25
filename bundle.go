@@ -19,9 +19,10 @@ func NewBundle() *Bundle {
 	return &Bundle{}
 }
 
-func (bnd *Bundle) Clear() {
+func (bnd *Bundle) Clear() *Bundle {
 	bnd.timeTag = time.Time{}
 	bnd.elements = nil
+	return bnd
 }
 
 func (bnd *Bundle) TimeTag() time.Time {
