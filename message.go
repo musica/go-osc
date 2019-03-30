@@ -22,8 +22,9 @@ func (msg *Message) Address() string {
 	return msg.address
 }
 
-func (msg *Message) SetAddress(address string) {
+func (msg *Message) SetAddress(address string) *Message {
 	msg.address = address
+	return msg
 }
 
 func (msg *Message) Arguments() *Arguments {
