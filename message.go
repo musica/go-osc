@@ -38,8 +38,14 @@ func (msg *Message) SetArguments(args *Arguments) *Message {
 
 func (msg *Message) MarshalBinary() ([]byte, error) {
 	address := createOSCString(msg.address)
+
+	if msg.arguments == nil {
+		return address, nil
+	}
+
 	typeTags := createOSCString("," + string(msg.arguments.typeTags))
 	dataBinary := msg.arguments.dataBinary
+
 	n := len(address) + len(typeTags) + len(dataBinary)
 	messageBinary := make([]byte, n)
 	n = 0
