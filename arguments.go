@@ -34,18 +34,14 @@ func (args *Arguments) TypeTags() []byte {
 	if args.typeTags == nil {
 		return nil
 	}
-	typeTags := make([]byte, len(args.typeTags))
-	copy(typeTags, args.typeTags)
-	return typeTags
+	return copyBytes(args.typeTags)
 }
 
 func (args *Arguments) DataBinary() []byte {
 	if args.dataBinary == nil {
 		return nil
 	}
-	dataBinary := make([]byte, len(args.dataBinary))
-	copy(dataBinary, args.dataBinary)
-	return dataBinary
+	return copyBytes(args.dataBinary)
 }
 
 func (args *Arguments) AddInt32(v int32) *Arguments {
@@ -149,4 +145,8 @@ func (args *Arguments) AddArray(v *Arguments) *Arguments {
 	args.addTypeTag(']')
 	args.addDataBinary(v.dataBinary...)
 	return args
+}
+
+func (args *Arguments) MarshalBinary() ([]byte, error) {
+	return args.DataBinary(), nil
 }

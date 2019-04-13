@@ -50,3 +50,9 @@ func timeTagToTime(v []byte) time.Time {
 
 	return time.Unix(int64(seconds), int64(nanoseconds))
 }
+
+func copyBytes(data []byte) []byte {
+	dataCopy := make([]byte, len(data))
+	copy(dataCopy, data)
+	return dataCopy
+}
